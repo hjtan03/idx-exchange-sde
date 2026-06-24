@@ -2,6 +2,10 @@ node_modules/
 .env
 .env.local
 .DS_Store
+
+*.sql
+*.csv
+
 coverage/
 dist/
 build/

@@ -3,6 +3,10 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT;
 const pool = require("./db");
+const propertiesRoutes = require("./routes/properties");
+
+app.use("/api/properties", propertiesRoutes);
+
 app.get("/", (req, res) => {
     res.send("Hello World");
 });

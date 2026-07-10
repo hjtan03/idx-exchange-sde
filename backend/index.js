@@ -4,7 +4,9 @@ const app = express();
 const PORT = process.env.PORT;
 const pool = require("./db");
 const propertiesRoutes = require("./routes/properties");
+const requestLogger = require("./middleware/requestLogger");
 
+app.use(requestLogger);
 app.use("/api/properties", propertiesRoutes);
 
 app.get("/", (req, res) => {

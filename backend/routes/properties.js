@@ -68,11 +68,11 @@ router.get("/", async (req, res) => {
         values.push(maxPrice);
     }
     if (beds !== undefined) {
-        conditions.push("L_Keyword2 = ?");
+        conditions.push("L_Keyword2 >= ?");
         values.push(beds);
     }
     if (baths !== undefined) {
-        conditions.push("LM_Dec_3 = ?");
+        conditions.push("LM_Dec_3 >= ?");
         values.push(baths);
     }
 

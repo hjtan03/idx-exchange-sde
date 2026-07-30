@@ -10,8 +10,10 @@ function ListingsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const latestRequestId = useRef(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
 
-  function loadProperties(filters = {}) {
+  function loadProperties(filters = {}, page = currentPage) {
     const requestId = ++latestRequestId.current;
     setLoading(true);
     setError(null);
@@ -20,7 +22,9 @@ function ListingsPage() {
       Object.entries(filters).filter(([_, value]) => value !== '')
     );
 
-    fetchProperties(cleanedFilters)
+    const offset = (page - 1) * itemsPerPage;
+
+    fetchProperties({ ...cleanedFilters, limit: itemsPerPage, offset })
       .then(data => {
         if (requestId !== latestRequestId.current) return;
         setProperties(data.results);

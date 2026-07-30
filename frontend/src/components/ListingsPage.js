@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { fetchProperties } from '../api/client';
 import PropertyCard from './PropertyCard';
 import PropertyFilters from './PropertyFilters';
+import Pagination from './Pagination';
 
 function ListingsPage() {
   const [properties, setProperties] = useState([]);
@@ -11,6 +12,7 @@ function ListingsPage() {
   const [error, setError] = useState(null);
   const latestRequestId = useRef(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [activeFilters, setActiveFilters] = useState({});
   const itemsPerPage = 20;
 
   function loadProperties(filters = {}, page = currentPage) {
@@ -39,6 +41,18 @@ function ListingsPage() {
       setLoading(false);
     });
   }
+
+  function handleSearch(filters) {
+    setActiveFilters(filters);
+    setCurrentPage(1);
+    loadProperties(filters, 1);
+  }
+
+  function handlePageChange(newPage) {
+    setCurrentPage(newPage);
+    loadProperties(activeFilters, newPage);
+    window.scrollTo(0, 0);
+  }
   
   useEffect(() => {
     loadProperties();
@@ -46,7 +60,7 @@ function ListingsPage() {
 
   return (
     <div>
-      <PropertyFilters onSearch={loadProperties} />
+      <PropertyFilters onSearch={handleSearch} />
       {loading && <div>Loading properties...</div>}
       {error && <div>Error: {error}</div>}
       {!loading && !error && (
@@ -55,11 +69,19 @@ function ListingsPage() {
           {properties.length === 0 ? (
             <p>No properties found. Try adjusting your filters.</p>
           ) : (
-            <div className="property-grid">
-              {properties.map(property => (
-                <PropertyCard key={property.id} property={property} />
-            ))}
-            </div>
+            <>
+              <div className="property-grid">
+                {properties.map(property => (
+                  <PropertyCard key={property.id} property={property} />
+              ))}
+              </div>
+              <Pagination
+                currentPage={currentPage}
+                totalItems={total}
+                itemsPerPage={itemsPerPage}
+                onPageChange={handlePageChange}
+              />
+            </>
           )}
         </>
       )}

@@ -1,4 +1,4 @@
-function getPageNumbers(currentPage, totalPages) {
+export function getPageNumbers(currentPage, totalPages) {
   const pages = [];
 
   if (totalPages <= 7) {

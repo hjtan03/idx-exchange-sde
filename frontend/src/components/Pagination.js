@@ -1,3 +1,5 @@
+import './Pagination.css';
+
 export function getPageNumbers(currentPage, totalPages) {
   const pages = [];
 

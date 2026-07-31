@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './PropertyFilters.css';
 
 const emptyFilters = {
     city: '',
@@ -28,7 +29,7 @@ function PropertyFilters({ onSearch }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="filters-form" onSubmit={handleSubmit}>
       <input
         type="text"
         name="city"

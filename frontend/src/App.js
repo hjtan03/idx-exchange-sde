@@ -1,12 +1,18 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import ListingsPage from './components/ListingsPage';
+import PropertyDetailPage from './components/PropertyDetailPage';
 
 function App() {
   return (
-    <div className="App">
-      <ListingsPage />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<ListingsPage />} />
+          <Route path="/property/:id" element={<PropertyDetailPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

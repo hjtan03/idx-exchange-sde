@@ -1,5 +1,7 @@
 import './PropertyCard.css'
 import { Link } from 'react-router-dom';
+import PropertyImageCarousel from './PropertyImageCarousel';
+
 function parsePhotos(l_photos) {
   try {
     const photos = JSON.parse(l_photos);
@@ -11,15 +13,10 @@ function parsePhotos(l_photos) {
 
 function PropertyCard({ property }) {
   const photos = parsePhotos(property.L_Photos);
-  const firstPhoto = photos[0] || null;
 
   return (
     <Link to={`/property/${property.L_ListingID}`} className="property-card">
-      {firstPhoto ? (
-        <img src={firstPhoto} alt={property.L_Address} />
-      ) : (
-        <div className="property-card-no-photo">No photo available</div>
-      )}
+      <PropertyImageCarousel photos={photos} />
       <p>${property.L_SystemPrice?.toLocaleString()}</p>
       <p>{property.L_Address}</p>
       <p>{property.L_City}, {property.L_State}</p>

@@ -1,4 +1,5 @@
 import './PropertyCard.css'
+import { Link } from 'react-router-dom';
 function parsePhotos(l_photos) {
   try {
     const photos = JSON.parse(l_photos);
@@ -13,7 +14,7 @@ function PropertyCard({ property }) {
   const firstPhoto = photos[0] || null;
 
   return (
-    <div className="property-card">
+    <Link to={`/property/${property.L_ListingID}`} className="property-card">
       {firstPhoto ? (
         <img src={firstPhoto} alt={property.L_Address} />
       ) : (
@@ -23,7 +24,7 @@ function PropertyCard({ property }) {
       <p>{property.L_Address}</p>
       <p>{property.L_City}, {property.L_State}</p>
       <p>{property.L_Keyword2} beds • {property.LM_Dec_3} baths • {property.LM_Int2_3} sqft</p>
-    </div>
+    </Link>
   );
 }
 

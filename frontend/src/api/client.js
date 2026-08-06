@@ -12,3 +12,13 @@ export async function fetchProperties(params = {}) {
 
   return response.json();
 }
+
+export async function fetchPropertyDetail(id) {
+  const response = await fetch(`${BASE_URL}/properties/${id}`);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch property: ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
+}

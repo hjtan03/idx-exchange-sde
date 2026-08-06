@@ -1,6 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchPropertyDetail } from '../api/client';
+import PropertyImageGallery from './PropertyImageGallery';
+
+function parsePhotos(l_photos) {
+  try {
+    const photos = JSON.parse(l_photos);
+    return Array.isArray(photos) ? photos : [];
+  } catch {
+    return [];
+  }
+}
 
 function PropertyDetailPage() {
   const { id } = useParams();
@@ -22,8 +32,11 @@ function PropertyDetailPage() {
   if (error) return <div>Error: {error}</div>;
   if (!property) return null;
 
+  const photos = parsePhotos(property.L_Photos);
+
   return (
     <div>
+      <PropertyImageGallery photos={photos} />
       <h1>${property.L_SystemPrice?.toLocaleString()}</h1>
       <p>{property.L_Address}, {property.L_City}, {property.L_State}</p>
       <p>

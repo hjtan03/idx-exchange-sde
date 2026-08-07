@@ -12,6 +12,7 @@ const emptyFilters = {
 
 function PropertyFilters({ onSearch }) {
   const [filters, setFilters] = useState(emptyFilters);
+  const [validationError, setValidationError] = useState(null);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -20,11 +21,22 @@ function PropertyFilters({ onSearch }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (
+      filters.minPrice !== '' &&
+      filters.maxPrice !== '' &&
+      Number(filters.minPrice) > Number(filters.maxPrice)
+    ) {
+      setValidationError('Min price cannot be greater than max price');
+      return;
+    }
+
+    setValidationError(null);
     onSearch(filters);
   }
 
   function handleClear() {
     setFilters(emptyFilters);
+    setValidationError(null);
     onSearch(emptyFilters);
   }
 
@@ -75,6 +87,7 @@ function PropertyFilters({ onSearch }) {
       </select>
       <button type="submit">Search</button>
       <button type="button" onClick={handleClear}>Clear Filters</button>
+      {validationError && <p className="filters-error">{validationError}</p>}
     </form>
   );
 }

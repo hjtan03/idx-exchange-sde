@@ -58,6 +58,9 @@ function ListingsPage() {
     loadProperties();
   }, []);
 
+  const startItem = (currentPage - 1) * itemsPerPage + 1;
+  const endItem = Math.min(currentPage * itemsPerPage, total);
+
   return (
     <div>
       <PropertyFilters onSearch={handleSearch} />
@@ -65,7 +68,7 @@ function ListingsPage() {
       {error && <div>Error: {error}</div>}
       {!loading && !error && (
         <>
-          <p>Showing {properties.length} of {total} properties</p>
+          <p>Showing {startItem}-{endItem} of {total} properties</p>
           {properties.length === 0 ? (
             <p>No properties found. Try adjusting your filters.</p>
           ) : (

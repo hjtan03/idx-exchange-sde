@@ -1,0 +1,27 @@
+.open-house-list {
+  margin: 24px 0;
+}
+
+.open-house-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.open-house-date {
+  font-weight: 600;
+}
+
+.open-house-time {
+  color: #4b5563;
+}
+
+.open-house-remarks {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.no-open-houses {
+  color: #6b7280;
+  font-style: italic;
+}

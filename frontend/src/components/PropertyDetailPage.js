@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { fetchPropertyDetail } from '../api/client';
+import { fetchPropertyDetail, fetchOpenHouses } from '../api/client';
 import PropertyImageGallery from './PropertyImageGallery';
 import PropertyMap from './PropertyMap';
+import OpenHouseList from './OpenHouseList';
 
 function parsePhotos(l_photos) {
   try {
@@ -18,6 +19,7 @@ function PropertyDetailPage() {
   const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [openHouses, setOpenHouses] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -27,6 +29,12 @@ function PropertyDetailPage() {
       .then(data => setProperty(data))
       .catch(err => setError(err.message))
       .finally(() => setLoading(false));
+  }, [id]);
+
+  useEffect(() => {
+  fetchOpenHouses(id)
+    .then(data => setOpenHouses(data))
+    .catch(() => setOpenHouses([]));
   }, [id]);
 
   if (loading) return <div>Loading property...</div>;
@@ -42,6 +50,7 @@ function PropertyDetailPage() {
         latitude={property.LMD_MP_Latitude}
         longitude={property.LMD_MP_Longitude}
       />
+      <OpenHouseList openHouses={openHouses} />
       <h1>${property.L_SystemPrice?.toLocaleString()}</h1>
       <p>{property.L_Address}, {property.L_City}, {property.L_State}</p>
       <p>

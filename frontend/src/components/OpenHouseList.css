@@ -1,22 +1,30 @@
-.open-house-list {
-  margin: 24px 0;
+.open-house-list h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #111827;
 }
 
 .open-house-item {
-  padding: 12px 0;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 12px;
 }
 
 .open-house-date {
   font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #111827;
 }
 
 .open-house-time {
-  color: #4b5563;
+  color: #374151;
+  margin: 0 0 8px 0;
 }
 
 .open-house-remarks {
-  margin-top: 4px;
+  margin: 0;
   font-size: 14px;
   color: #6b7280;
 }

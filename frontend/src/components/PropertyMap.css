@@ -1,9 +1,11 @@
 .property-map {
-  margin: 24px 0;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .property-map iframe {
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
+  display: block;
 }
 
 .property-map a {

@@ -4,6 +4,7 @@ import { fetchPropertyDetail, fetchOpenHouses } from '../api/client';
 import PropertyImageGallery from './PropertyImageGallery';
 import PropertyMap from './PropertyMap';
 import OpenHouseList from './OpenHouseList';
+import './PropertyDetailPage.css';
 
 function parsePhotos(l_photos) {
   try {
@@ -37,26 +38,39 @@ function PropertyDetailPage() {
     .catch(() => setOpenHouses([]));
   }, [id]);
 
-  if (loading) return <div>Loading property...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div className="detail-status">Loading property...</div>;
+  if (error) return <div className="detail-status">Error: {error}</div>;
   if (!property) return null;
 
   const photos = parsePhotos(property.L_Photos);
 
   return (
-    <div>
+    <div className="property-detail-page">
       <PropertyImageGallery photos={photos} />
-      <PropertyMap
-        latitude={property.LMD_MP_Latitude}
-        longitude={property.LMD_MP_Longitude}
-      />
-      <OpenHouseList openHouses={openHouses} />
-      <h1>${property.L_SystemPrice?.toLocaleString()}</h1>
-      <p>{property.L_Address}, {property.L_City}, {property.L_State}</p>
-      <p>
-        {property.L_Keyword2} beds • {property.LM_Dec_3} baths • {property.LM_Int2_3} sqft • Built {property.YearBuilt}
-      </p>
-      <p>{property.L_Remarks}</p>
+      <div className="detail-header">
+        <h1 className="detail-price">${property.L_SystemPrice?.toLocaleString()}</h1>
+        <p className="detail-address">{property.L_Address}, {property.L_City}, {property.L_State}</p>
+        <p className="detail-stats">
+          {property.L_Keyword2} beds • {property.LM_Dec_3} baths • {property.LM_Int2_3} sqft • Built {property.YearBuilt}
+        </p>
+      </div>
+
+      <div className="detail-section">
+        <h2>Description</h2>
+        <p className="detail-description">{property.L_Remarks}</p>
+      </div>
+
+      <div className="detail-section">
+        <h2>Location</h2>
+        <PropertyMap
+          latitude={property.LMD_MP_Latitude}
+          longitude={property.LMD_MP_Longitude}
+        />
+      </div>
+
+      <div className="detail-section">
+        <OpenHouseList openHouses={openHouses} />
+      </div>
     </div>
   );
 }

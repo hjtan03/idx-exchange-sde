@@ -68,7 +68,11 @@ function ListingsPage() {
       {error && <div>Error: {error}</div>}
       {!loading && !error && (
         <>
-          <p>Showing {startItem}-{endItem} of {total} properties</p>
+          {total === 0 ? (
+            <p>Showing 0 properties</p>
+          ) : (
+            <p>Showing {startItem}-{endItem} of {total} properties</p>
+          )}
           {properties.length === 0 ? (
             <p>No properties found. Try adjusting your filters.</p>
           ) : (

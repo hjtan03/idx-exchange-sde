@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchPropertyDetail } from '../api/client';
 import PropertyImageGallery from './PropertyImageGallery';
+import PropertyMap from './PropertyMap';
 
 function parsePhotos(l_photos) {
   try {
@@ -37,6 +38,10 @@ function PropertyDetailPage() {
   return (
     <div>
       <PropertyImageGallery photos={photos} />
+      <PropertyMap
+        latitude={property.LMD_MP_Latitude}
+        longitude={property.LMD_MP_Longitude}
+      />
       <h1>${property.L_SystemPrice?.toLocaleString()}</h1>
       <p>{property.L_Address}, {property.L_City}, {property.L_State}</p>
       <p>

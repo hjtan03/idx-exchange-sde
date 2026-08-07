@@ -1,0 +1,19 @@
+.property-map {
+  margin: 24px 0;
+}
+
+.property-map iframe {
+  border-radius: 8px;
+}
+
+.property-map a {
+  display: inline-block;
+  margin-top: 8px;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.property-map a:hover {
+  text-decoration: underline;
+}

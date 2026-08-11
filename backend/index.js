@@ -5,9 +5,12 @@ const PORT = process.env.PORT;
 const pool = require("./db");
 const propertiesRoutes = require("./routes/properties");
 const requestLogger = require("./middleware/requestLogger");
+const searchRouter = require("./routes/search");
 
+app.use(express.json());
 app.use(requestLogger);
 app.use("/api/properties", propertiesRoutes);
+app.use("/api/search", searchRouter);
 
 app.get("/", (req, res) => {
     res.send("Hello World");

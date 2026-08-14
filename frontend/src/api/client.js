@@ -32,3 +32,21 @@ export async function fetchOpenHouses(id) {
 
   return response.json();
 }
+
+export async function fetchNaturalSearch(query) {
+  const response = await fetch(`${BASE_URL}/search/natural`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query })
+  });
+
+  if (response.status === 503) {
+    throw new Error('Search is temporarily unavailable. Please try again shortly.');
+  }
+
+  if (!response.ok) {
+    throw new Error(`Search failed: ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
+}

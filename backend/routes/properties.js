@@ -13,11 +13,15 @@ router.get("/", async (req, res) => {
     let maxPrice = req.query.maxPrice;
     let beds = req.query.beds;
     let baths = req.query.baths;
+    let minYearBuilt = req.query.minYearBuilt;
+    let maxYearBuilt = req.query.maxYearBuilt;
 
     if (minPrice !== undefined) minPrice = Number(minPrice);
     if (maxPrice !== undefined) maxPrice = Number(maxPrice);
     if (beds !== undefined) beds = Number(beds);
     if (baths !== undefined) baths = Number(baths);
+    if (minYearBuilt !== undefined) minYearBuilt = Number(minYearBuilt);
+    if (maxYearBuilt !== undefined) maxYearBuilt = Number(maxYearBuilt);
 
     if (Number.isNaN(limit) || limit < 1 || limit > 100) {
         return res.status(400).json({ error: "limit must be an integer between 1 and 100" });
@@ -48,6 +52,21 @@ router.get("/", async (req, res) => {
             error: "minPrice cannot be greater than maxPrice"
         });
     }
+    if (minYearBuilt !== undefined && (Number.isNaN(minYearBuilt) || minYearBuilt < 0)) {
+        return res.status(400).json({ error: "minYearBuilt must be a non-negative integer" });
+    }
+    if (maxYearBuilt !== undefined && (Number.isNaN(maxYearBuilt) || maxYearBuilt < 0)) {
+        return res.status(400).json({ error: "maxYearBuilt must be a non-negative integer" });
+    }
+    if (
+        minYearBuilt !== undefined &&
+        maxYearBuilt !== undefined &&
+        minYearBuilt > maxYearBuilt
+    ) {
+        return res.status(400).json({
+            error: "minYearBuilt cannot be greater than maxYearBuilt"
+        });
+    }
 
     const conditions = [];
     const values = [];
@@ -75,6 +94,15 @@ router.get("/", async (req, res) => {
         conditions.push("LM_Dec_3 >= ?");
         values.push(baths);
     }
+    if (minYearBuilt !== undefined) {
+        conditions.push("YearBuilt >= ?");
+        values.push(minYearBuilt);
+    }
+    if (maxYearBuilt !== undefined) {
+        conditions.push("YearBuilt <= ?");
+        values.push(maxYearBuilt);
+    }
+    
 
     let sql = `
         SELECT * 

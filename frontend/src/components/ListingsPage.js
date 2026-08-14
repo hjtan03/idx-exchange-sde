@@ -4,6 +4,7 @@ import { fetchProperties } from '../api/client';
 import PropertyCard from './PropertyCard';
 import PropertyFilters from './PropertyFilters';
 import Pagination from './Pagination';
+import { Link } from 'react-router-dom';
 
 function ListingsPage() {
   const [properties, setProperties] = useState([]);
@@ -63,6 +64,7 @@ function ListingsPage() {
 
   return (
     <div>
+      <Link to="/search/natural" className="natural-search-link">Try Natural Language Search</Link>
       <PropertyFilters onSearch={handleSearch} />
       {loading && <div>Loading properties...</div>}
       {error && <div>Error: {error}</div>}

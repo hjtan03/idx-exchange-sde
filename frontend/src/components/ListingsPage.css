@@ -4,3 +4,15 @@
   gap: 24px;
   padding: 24px;
 }
+
+.natural-search-link {
+  display: inline-block;
+  margin: 16px 24px 0;
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.natural-search-link:hover {
+  text-decoration: underline;
+}

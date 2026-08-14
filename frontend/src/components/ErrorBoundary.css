@@ -1,0 +1,27 @@
+.error-boundary {
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 32px;
+  text-align: center;
+}
+
+.error-boundary h1 {
+  font-size: 24px;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.error-boundary p {
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.error-boundary button {
+  padding: 10px 24px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}

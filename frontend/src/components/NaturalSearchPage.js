@@ -48,6 +48,8 @@ function NaturalSearchPage() {
       <form onSubmit={handleSubmit} className="natural-search-form">
         <input
           type="text"
+          name="naturalSearchQuery"
+          id="naturalSearchQuery"
           placeholder="e.g. 3 bed 2 bath house in Beverly Hills under $800k built after 2000"
           value={query}
           onChange={e => setQuery(e.target.value)}

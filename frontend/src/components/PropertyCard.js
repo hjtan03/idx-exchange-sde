@@ -1,15 +1,7 @@
 import './PropertyCard.css'
 import { Link } from 'react-router-dom';
 import PropertyImageCarousel from './PropertyImageCarousel';
-
-function parsePhotos(l_photos) {
-  try {
-    const photos = JSON.parse(l_photos);
-    return Array.isArray(photos) ? photos : [];
-  } catch {
-    return [];
-  }
-}
+import { parsePhotos } from '../utils/parsePhotos';
 
 function PropertyCard({ property }) {
   const photos = parsePhotos(property.L_Photos);

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ListingsPage from './components/ListingsPage';
-import PropertyDetailPage from './components/PropertyDetailPage';
-import NaturalSearchPage from './components/NaturalSearchPage';
+import ListingsPage from './pages/ListingsPage';
+import PropertyDetailPage from './pages/PropertyDetailPage';
+import NaturalSearchPage from './pages/NaturalSearchPage';
 import ErrorBoundary from './components/ErrorBoundary';
 import './App.css';
 

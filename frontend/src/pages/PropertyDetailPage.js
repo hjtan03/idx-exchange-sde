@@ -1,19 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchPropertyDetail, fetchOpenHouses } from '../api/client';
-import PropertyImageGallery from './PropertyImageGallery';
-import PropertyMap from './PropertyMap';
-import OpenHouseList from './OpenHouseList';
+import {parsePhotos } from '../utils/parsePhotos';
+import PropertyImageGallery from '../components/PropertyImageGallery';
+import PropertyMap from '../components/PropertyMap';
+import OpenHouseList from '../components/OpenHouseList';
 import './PropertyDetailPage.css';
-
-function parsePhotos(l_photos) {
-  try {
-    const photos = JSON.parse(l_photos);
-    return Array.isArray(photos) ? photos : [];
-  } catch {
-    return [];
-  }
-}
 
 function PropertyDetailPage() {
   const { id } = useParams();

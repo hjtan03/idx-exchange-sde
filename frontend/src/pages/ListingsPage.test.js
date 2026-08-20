@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import ListingsPage from './ListingsPage';
 import { fetchProperties } from '../api/client';
+import { MemoryRouter } from 'react-router-dom';
 
 jest.mock('../api/client');
 
@@ -19,7 +20,11 @@ test('does not let a stale request overwrite a newer one', async () => {
     .mockReturnValueOnce(first.promise)
     .mockReturnValueOnce(second.promise);
 
-  render(<ListingsPage />);
+  render(
+    <MemoryRouter>
+    <ListingsPage />
+    </MemoryRouter>
+  );
   await waitFor(() => expect(fetchProperties).toHaveBeenCalledTimes(1));
 
   fireEvent.click(screen.getByText('Search')); // fires "first" request

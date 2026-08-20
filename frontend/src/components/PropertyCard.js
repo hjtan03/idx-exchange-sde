@@ -1,5 +1,6 @@
 import './PropertyCard.css'
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import PropertyImageCarousel from './PropertyImageCarousel';
 import { parsePhotos } from '../utils/parsePhotos';
 
@@ -16,5 +17,19 @@ function PropertyCard({ property }) {
     </Link>
   );
 }
+
+PropertyCard.propTypes = {
+  property: PropTypes.shape({
+    L_ListingID: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    L_Photos: PropTypes.string,
+    L_SystemPrice: PropTypes.number,
+    L_Address: PropTypes.string,
+    L_City: PropTypes.string,
+    L_State: PropTypes.string,
+    L_Keyword2: PropTypes.number,
+    LM_Dec_3: PropTypes.number,
+    LM_Int2_3: PropTypes.number,
+  }).isRequired,
+};
 
 export default PropertyCard;

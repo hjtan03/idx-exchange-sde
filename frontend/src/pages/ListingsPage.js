@@ -57,6 +57,7 @@ function ListingsPage() {
   
   useEffect(() => {
     loadProperties();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const startItem = (currentPage - 1) * itemsPerPage + 1;

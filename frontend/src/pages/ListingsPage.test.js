@@ -31,7 +31,7 @@ test('does not let a stale request overwrite a newer one', async () => {
   fireEvent.click(screen.getByText('Search')); // fires "second" request, before "first" resolves
 
   second.resolve({ total: 1, limit: 20, offset: 0, results: [{ id: 2, L_Address: 'Denver House' }] });
-  await waitFor(() => screen.getByText(/Denver House/));
+  await screen.findByText(/Denver House/);
 
   first.resolve({ total: 1, limit: 20, offset: 0, results: [{ id: 1, L_Address: 'Austin House' }] });
 

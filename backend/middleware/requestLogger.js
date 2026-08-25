@@ -3,7 +3,7 @@ function requestLogger(req, res, next) {
     const timestamp = new Date().toISOString();
     res.on('finish', () => {
         const duration = Date.now() - start;
-        console.log(`${timestamp} ${req.method} ${req.originalUrl} ${res.statusCode} - ${duration}ms`);
+        console.info(`${timestamp} ${req.method} ${req.originalUrl} ${res.statusCode} - ${duration}ms`);
     });
     next();
 }

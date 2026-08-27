@@ -54,5 +54,21 @@ describe("GET /api/properties", () => {
         expect(params).toContain(10);
         expect(params).toContain(20);
     });
+    it("filters by city", async () => {
+        const mockRows = [
+            { id: 3, L_ListingID: "1003", L_City: "Hesperia", L_SystemPrice: 350000 }
+        ];
+        pool.query
+            .mockResolvedValueOnce([mockRows])
+            .mockResolvedValueOnce([[{ total: 1 }]]);
+
+        const res = await request(app).get("/api/properties?city=Hesperia");
+
+        expect(res.status).toBe(200);
+        expect(res.body.results).toEqual(mockRows);
+        const [sql, params] = pool.query.mock.calls[0];
+        expect(sql).toContain("L_City");
+        expect(params).toContain("Hesperia");
+    });
 });
 

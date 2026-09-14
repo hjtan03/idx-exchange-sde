@@ -8,32 +8,33 @@
   padding: 48px 24px;
   text-align: center;
   font-size: 16px;
-  color: #6b7280;
+  color: var(--muted);
 }
 
 .detail-header {
   margin-top: 24px;
   margin-bottom: 24px;
   padding-bottom: 24px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--line);
 }
 
 .detail-price {
-  font-size: 32px;
-  font-weight: 700;
+  font-family: 'Fraunces', serif;
+  font-size: 2.25rem;
+  font-weight: 600;
   margin: 0 0 8px 0;
-  color: #111827;
+  color: var(--ink);
 }
 
 .detail-address {
   font-size: 18px;
-  color: #374151;
+  color: var(--ink);
   margin: 0 0 8px 0;
 }
 
 .detail-stats {
   font-size: 15px;
-  color: #6b7280;
+  color: var(--muted);
   margin: 0;
 }
 
@@ -42,14 +43,15 @@
 }
 
 .detail-section h2 {
-  font-size: 20px;
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #111827;
+  color: var(--ink);
 }
 
 .detail-description {
   font-size: 15px;
   line-height: 1.6;
-  color: #374151;
+  color: var(--ink);
 }

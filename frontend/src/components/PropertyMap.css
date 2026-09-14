@@ -1,17 +1,18 @@
 .property-map {
-  border-radius: 8px;
+  border-radius: 2px;
   overflow: hidden;
+  border: 1px solid var(--line);
 }
 
 .property-map iframe {
-  border-radius: 8px 8px 0 0;
+  border-radius: 0;
   display: block;
 }
 
 .property-map a {
   display: inline-block;
   margin-top: 8px;
-  color: #2563eb;
+  color: var(--forest);
   text-decoration: none;
   font-weight: 500;
 }

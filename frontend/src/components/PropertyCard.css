@@ -1,4 +1,16 @@
+.property-card a,
+.property-card-price,
+.property-card-address,
+
+.property-card-city {
+  color: inherit;
+  text-decoration: none;
+}
+
 .property-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
   border: 1px solid var(--line);
   border-radius: 2px;
   overflow: hidden;

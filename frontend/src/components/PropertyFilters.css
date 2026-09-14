@@ -1,57 +1,38 @@
-.filters-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
-  padding: 16px 24px;
-  background-color: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
+.property-filters input,
+.property-filters select {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 0.6rem 0.75rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+  background: white;
 }
 
-.filters-form input,
-.filters-form select {
-  padding: 8px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-.filters-form input:focus,
-.filters-form select:focus {
+.property-filters input:focus,
+.property-filters select:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+  border-color: var(--forest);
 }
 
-.filters-form button {
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  border: none;
-}
-
-.filters-form button[type="submit"] {
-  background-color: #2563eb;
+.property-filters button[type="submit"] {
+  background: var(--forest);
   color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.filters-form button[type="submit"]:hover {
-  background-color: #1d4ed8;
+.property-filters button[type="submit"]:hover {
+  background: var(--forest-dark);
 }
 
-.filters-form button[type="button"] {
-  background-color: #e5e7eb;
-  color: #374151;
-}
-
-.filters-form button[type="button"]:hover {
-  background-color: #d1d5db;
-}
-
-.filters-error {
-  width: 100%;
-  color: #dc2626;
-  font-size: 14px;
-  margin: 8px 0 0 0;
+.property-filters .clear-button {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 0.6rem 1.25rem;
+  cursor: pointer;
 }

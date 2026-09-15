@@ -52,6 +52,40 @@ function PropertyDetailPage() {
         <p className="detail-description">{property.L_Remarks}</p>
       </div>
 
+            <div className="detail-section">
+        <h2>Property Details</h2>
+        <div className="detail-facts">
+          <div className="detail-fact">
+            <span className="detail-fact-label">Type</span>
+            <span className="detail-fact-value">{property.L_Type_ || '—'}</span>
+          </div>
+          <div className="detail-fact">
+            <span className="detail-fact-label">Stories</span>
+            <span className="detail-fact-value">{property.StoriesTotal || '—'}</span>
+          </div>
+          <div className="detail-fact">
+            <span className="detail-fact-label">Lot Size</span>
+            <span className="detail-fact-value">
+              {property.LotSizeAcres ? `${property.LotSizeAcres} acres` : '—'}
+            </span>
+          </div>
+          <div className="detail-fact">
+            <span className="detail-fact-label">Garage</span>
+            <span className="detail-fact-value">
+              {property.GarageYN === 1 ? 'Yes' : property.GarageYN === 0 ? 'No' : '—'}
+            </span>
+          </div>
+          <div className="detail-fact">
+            <span className="detail-fact-label">Heating</span>
+            <span className="detail-fact-value">{property.Heating || '—'}</span>
+          </div>
+          <div className="detail-fact">
+            <span className="detail-fact-label">View</span>
+            <span className="detail-fact-value">{property.View || '—'}</span>
+          </div>
+        </div>
+      </div>
+
       <div className="detail-section">
         <h2>Location</h2>
         <PropertyMap

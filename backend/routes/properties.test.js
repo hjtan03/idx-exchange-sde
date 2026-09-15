@@ -50,7 +50,7 @@ describe("GET /api/properties", () => {
         expect(res.body.limit).toBe(10);
         expect(res.body.offset).toBe(20);
         expect(res.body.results).toEqual(mockRows);
-        const [sql, params] = pool.query.mock.calls[0];
+        const [, params] = pool.query.mock.calls[0];
         expect(params).toContain(10);
         expect(params).toContain(20);
     });

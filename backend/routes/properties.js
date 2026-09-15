@@ -68,6 +68,14 @@ router.get("/", async (req, res) => {
         });
     }
 
+    // Build the WHERE clause dynamically rather than writing a separate query for
+    // every possible filter combination. Each filter is optional and independent,
+    // so a fixed query would need 2^8 variants to cover every combination of the
+    // 8 filters below. Conditions and their parameterized values are pushed in
+    // lockstep so `values` stays in the exact order the `?` placeholders expect —
+    // this same conditions/values pair is reused for both the results query and
+    // the COUNT query below, so pagination metadata always reflects the same
+    // filters as the results themselves.
     const conditions = [];
     const values = [];
     if (city) {
@@ -113,6 +121,12 @@ router.get("/", async (req, res) => {
             WHERE ${conditions.join(" AND ")}
         `;
     }
+    // Pagination uses limit/offset rather than page/pageSize to match the API
+    // contract: offset = (page - 1) * limit, so page 3 at limit=20 means
+    // "skip the first 40 rows, return the next 20." limit and offset are appended
+    // to `values` *after* the filter values above, since MySQL binds placeholders
+    // positionally in the order they appear in the query string — filters first,
+    // then LIMIT, then OFFSET.
     sql += `
         LIMIT ?
         OFFSET ?

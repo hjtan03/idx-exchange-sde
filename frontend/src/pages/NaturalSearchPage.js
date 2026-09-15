@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { fetchNaturalSearch } from '../api/client';
-import PropertyCard from './PropertyCard';
+import PropertyCard from '../components/PropertyCard';
 import './NaturalSearchPage.css';
 
 function formatFilters(filters) {

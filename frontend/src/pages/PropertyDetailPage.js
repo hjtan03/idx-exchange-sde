@@ -1,19 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchPropertyDetail, fetchOpenHouses } from '../api/client';
-import PropertyImageGallery from './PropertyImageGallery';
-import PropertyMap from './PropertyMap';
-import OpenHouseList from './OpenHouseList';
+import {parsePhotos } from '../utils/parsePhotos';
+import PropertyImageGallery from '../components/PropertyImageGallery';
+import PropertyMap from '../components/PropertyMap';
+import OpenHouseList from '../components/OpenHouseList';
 import './PropertyDetailPage.css';
-
-function parsePhotos(l_photos) {
-  try {
-    const photos = JSON.parse(l_photos);
-    return Array.isArray(photos) ? photos : [];
-  } catch {
-    return [];
-  }
-}
 
 function PropertyDetailPage() {
   const { id } = useParams();
@@ -58,6 +50,40 @@ function PropertyDetailPage() {
       <div className="detail-section">
         <h2>Description</h2>
         <p className="detail-description">{property.L_Remarks}</p>
+      </div>
+
+            <div className="detail-section">
+        <h2>Property Details</h2>
+        <div className="detail-facts">
+          <div className="detail-fact">
+            <span className="detail-fact-label">Type</span>
+            <span className="detail-fact-value">{property.L_Type_ || '—'}</span>
+          </div>
+          <div className="detail-fact">
+            <span className="detail-fact-label">Stories</span>
+            <span className="detail-fact-value">{property.StoriesTotal || '—'}</span>
+          </div>
+          <div className="detail-fact">
+            <span className="detail-fact-label">Lot Size</span>
+            <span className="detail-fact-value">
+              {property.LotSizeAcres ? `${property.LotSizeAcres} acres` : '—'}
+            </span>
+          </div>
+          <div className="detail-fact">
+            <span className="detail-fact-label">Garage</span>
+            <span className="detail-fact-value">
+              {property.GarageYN === 1 ? 'Yes' : property.GarageYN === 0 ? 'No' : '—'}
+            </span>
+          </div>
+          <div className="detail-fact">
+            <span className="detail-fact-label">Heating</span>
+            <span className="detail-fact-value">{property.Heating || '—'}</span>
+          </div>
+          <div className="detail-fact">
+            <span className="detail-fact-label">View</span>
+            <span className="detail-fact-value">{property.View || '—'}</span>
+          </div>
+        </div>
       </div>
 
       <div className="detail-section">

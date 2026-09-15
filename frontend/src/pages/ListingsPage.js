@@ -1,9 +1,9 @@
 import './ListingsPage.css';
 import { useState, useEffect, useRef } from 'react';
 import { fetchProperties } from '../api/client';
-import PropertyCard from './PropertyCard';
-import PropertyFilters from './PropertyFilters';
-import Pagination from './Pagination';
+import PropertyCard from '../components/PropertyCard';
+import PropertyFilters from '../components/PropertyFilters';
+import Pagination from '../components/Pagination';
 import { Link } from 'react-router-dom';
 
 function ListingsPage() {
@@ -57,6 +57,7 @@ function ListingsPage() {
   
   useEffect(() => {
     loadProperties();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const startItem = (currentPage - 1) * itemsPerPage + 1;

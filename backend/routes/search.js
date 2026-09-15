@@ -94,7 +94,7 @@ router.post("/natural", async (req, res) => {
     let extracted;
     try {
         extracted = JSON.parse(cleaned);
-    } catch (parseError) {
+    } catch {
         return res.status(200).json({
             results: [],
             interpretedFilters: null,

@@ -1,0 +1,81 @@
+.property-detail-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.detail-status {
+  padding: 48px 24px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.detail-header {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.detail-price {
+  font-family: 'Fraunces', serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--ink);
+}
+
+.detail-address {
+  font-size: 18px;
+  color: var(--ink);
+  margin: 0 0 8px 0;
+}
+
+.detail-stats {
+  font-size: 15px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.detail-section {
+  margin-bottom: 32px;
+}
+
+.detail-section h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+
+.detail-description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.detail-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem 2rem;
+}
+
+.detail-fact {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-fact-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.detail-fact-value {
+  font-size: 1rem;
+  color: var(--ink);
+  margin-top: 0.2rem;
+}

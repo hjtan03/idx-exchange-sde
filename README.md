@@ -55,7 +55,16 @@ docker run -d \
   -e MYSQL_DATABASE=rets \
   mysql:8
 ```
-Import the provided `rets_property.sql` and `rets_openhouse.sql` dumps into the `rets` database. (These raw data files are not included in this repository — obtain them separately and never commit them.)
+Import the provided `rets_property.sql` and `rets_openhouse.sql` dumps into the `rets` database:
+```bash
+docker exec -i idx-mysql-local mysql -u root -p<your_password> rets < rets_property.sql
+docker exec -i idx-mysql-local mysql -u root -p<your_password> rets < rets_openhouse.sql
+```
+Then apply the additional indexes added in Week 9:
+```bash
+docker exec -i idx-mysql-local mysql -u root -p<your_password> rets < backend/sql/proposed_indexes.sql
+```
+(These raw data files and the fresh-data FTP credentials are provided separately by your team lead — they are not included in this repository, and should never be committed.)
 
 ### 3. Configure and start the backend
 ```bash
@@ -93,11 +102,11 @@ The app runs at `http://localhost:3000` and proxies `/api/*` requests to the bac
 
 ### 5. Run tests
 ```bash
-# Backend
+# Backend (from repo root)
 cd backend && npm test
 
-# Frontend
-cd frontend && npm test
+# Frontend (from repo root - cd .. first if you're still inside backend/)
+cd ../frontend && npm test -- --watchAll=false
 ```
 
 ## Project Structure
@@ -210,6 +219,7 @@ curl http://localhost:5001/api/properties/1088763330/openhouses
   }
 ]
 ```
+*Example above reflects a listing with a scheduled open house at the time of writing — dates will differ or return `[]` depending on current data.*
 `all_data` is a raw JSON string returned as-is — fields like `OpenHouseRemarks` are extracted from it on the frontend, not the backend.
 
 ### `POST /api/search/natural`
